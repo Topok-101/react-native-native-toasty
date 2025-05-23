@@ -43,7 +43,12 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "react-native-native-toast",
+    "react-native-native-toasty",
+    "toast",
+    "RN-toast",
+    "react-native-toast"
   ],
   "repository": {
     "type": "git",

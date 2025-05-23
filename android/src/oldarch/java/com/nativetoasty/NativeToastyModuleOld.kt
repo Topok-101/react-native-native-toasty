@@ -12,22 +12,31 @@ import android.widget.TextView
 import android.widget.Toast
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReadableMap
+import com.facebook.react.bridge.ReactMethod
+import com.facebook.react.bridge.ReactContextBaseJavaModule
 
-class NativeToastyModule(reactContext: ReactApplicationContext) : NativeToastySpec(reactContext) {
+class NativeToastyModuleOld(reactContext: ReactApplicationContext) :
+  ReactContextBaseJavaModule(reactContext) {
 
   override fun getName() = NAME
 
-  override fun show(options: ReadableMap) = showToast(options, "custom")
+  @ReactMethod
+  fun show(options: ReadableMap) = showToast(options, "custom")
 
-  override fun normal(options: ReadableMap) = showToast(options, "normal")
+  @ReactMethod
+  fun normal(options: ReadableMap) = showToast(options, "normal")
 
-  override fun info(options: ReadableMap) = showToast(options, "info")
+  @ReactMethod
+  fun info(options: ReadableMap) = showToast(options, "info")
 
-  override fun success(options: ReadableMap) = showToast(options, "success")
+  @ReactMethod
+  fun success(options: ReadableMap) = showToast(options, "success")
 
-  override fun warn(options: ReadableMap) = showToast(options, "warn")
+  @ReactMethod
+  fun warn(options: ReadableMap) = showToast(options, "warn")
 
-  override fun error(options: ReadableMap) = showToast(options, "error")
+  @ReactMethod
+  fun error(options: ReadableMap) = showToast(options, "error")
 
   private fun showToast(options: ReadableMap, type: String) {
     val title = options.getStringOrDefault("title", "Toast")

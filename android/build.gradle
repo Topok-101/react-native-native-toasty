@@ -15,11 +15,16 @@ buildscript {
   }
 }
 
+def isNewArchitectureEnabled() {
+  return rootProject.hasProperty("newArchEnabled") && rootProject.getProperty("newArchEnabled") == "true"
+}
 
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
 
-apply plugin: "com.facebook.react"
+if (isNewArchitectureEnabled()) {
+  apply plugin: "com.facebook.react"
+}
 
 def getExtOrIntegerDefault(name) {
   return rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties["NativeToasty_" + name]).toInteger()
@@ -33,6 +38,8 @@ android {
   defaultConfig {
     minSdkVersion getExtOrIntegerDefault("minSdkVersion")
     targetSdkVersion getExtOrIntegerDefault("targetSdkVersion")
+    buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", "${isNewArchitectureEnabled()}"
+    println "✅ newArchEnabled: ${isNewArchitectureEnabled()}"
   }
 
   buildFeatures {
@@ -56,10 +63,15 @@ android {
 
   sourceSets {
     main {
-      java.srcDirs += [
-        "generated/java",
-        "generated/jni"
-      ]
+      if (isNewArchitectureEnabled()) {
+        java.srcDirs += [
+          "generated/java",
+          "generated/jni",
+          "src/newarch/java" // move new arch files here
+        ]
+      } else {
+        java.srcDirs += ["src/oldarch/java"] // move old arch files here
+      }
     }
   }
 }
@@ -76,8 +88,10 @@ dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 
-react {
-  jsRootDir = file("../src/")
-  libraryName = "NativeToasty"
-  codegenJavaPackageName = "com.nativetoasty"
+if (isNewArchitectureEnabled()) {
+  react {
+    jsRootDir = file("../src/")
+    libraryName = "NativeToasty"
+    codegenJavaPackageName = "com.nativetoasty"
+  }
 }
