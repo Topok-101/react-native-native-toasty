@@ -10,7 +10,7 @@
 
 | Android | Ios   |
 |---------|-------|
-| <video src="./screenshots/android.mp4" ></video> | <video src="./screenshots/ios.mp4"  ></video>  |
+| ![Alt Text](./screenshots/android.gif) | ![Alt Text](./screenshots/ios.gif) |
 
 ## ✨ Features
 
