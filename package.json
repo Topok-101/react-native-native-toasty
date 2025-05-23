@@ -1,7 +1,7 @@
 {
   "name": "react-native-native-toasty",
   "version": "0.1.0",
-  "description": "React Native toast notifications with Turbo Native Modules. ",
+  "description": "React Native toast notifications with Turbo Native Modules.",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
   "exports": {
@@ -49,7 +49,7 @@
     "type": "git",
     "url": "git+https://github.com/Topok-101/react-native-native-toasty.git"
   },
-  "author": "topok101 <top.tanawat101@gmail.com> (https://github.com/Topok-101)",
+  "author": "topok101 <thanawat.top101@gmail.com> (https://github.com/Topok-101)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Topok-101/react-native-native-toasty/issues"

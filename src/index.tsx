@@ -1,5 +1,5 @@
-import NativeToasty from './NativeNativeToasty';
+import RNNativeToasty from './RNNativeToasty';
+import { type ToastOptions } from './types';
 
-export function multiply(a: number, b: number): number {
-  return NativeToasty.multiply(a, b);
-}
+export type { ToastOptions };
+export default RNNativeToasty;
